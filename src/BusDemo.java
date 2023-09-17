@@ -6,12 +6,17 @@ import java.util.Scanner;
 public class BusDemo {
   public static void main(String[] args) {
 
-    ArrayList<Bus> buses = new ArrayList<>();
+/*
+   Without jdbc connection
+
+  ArrayList<Bus> buses = new ArrayList<>();
     ArrayList<Booking> bookings = new ArrayList<>();
     buses.add(new Bus(1, true, 1));
     buses.add(new Bus(2, false, 20));
-    buses.add(new Bus(3, true, 30));
+    buses.add(new Bus(3, true, 30));*/
 
+BusDAO busdao = new BusDAO();
+busdao.displayBusInfo();
     int userOptions = 1;
     Scanner sc = new Scanner(System.in);
 
