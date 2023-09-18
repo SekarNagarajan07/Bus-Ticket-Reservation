@@ -1,46 +1,39 @@
 package busResv;
 
-import busResv.Bus;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class BusDemo {
-  public static void main(String[] args) throws SQLException {
 
-/*
-   Without jdbc connection
+    public static void main(String[] args)  {
 
-  ArrayList<Bus> buses = new ArrayList<>();
-    ArrayList<Booking> bookings = new ArrayList<>();
-    buses.add(new Bus(1, true, 1));
-    buses.add(new Bus(2, false, 20));
-    buses.add(new Bus(3, true, 30));*/
+        BusDAO busdao = new BusDAO();
 
-BusDAO busdao = new BusDAO();
-busdao.displayBusInfo();
-    int userOptions = 1;
-    Scanner sc = new Scanner(System.in);
+        try {
+            busdao.displayBusInfo();
 
-    for(Bus b : buses) {
-      b.displayBusInfo();
+            int userOpt = 1;
+            Scanner scanner = new Scanner(System.in);
+
+            while(userOpt==1) {
+                System.out.println("Enter 1 to Book and 2 to exit");
+                userOpt = scanner.nextInt();
+                if(userOpt == 1) {
+                    Booking booking = new Booking();
+                    if(booking.isAvailable()) {
+                        Booking1DAO bookingdao = new Booking1DAO();
+                        bookingdao.addBooking(booking);
+                        System.out.println("Your booking is confirmed");
+                    }
+                    else
+                        System.out.println("Sorry. Bus is full. Try another bus or date.");
+                }
+            }
+            scanner.close();
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
     }
 
-    while (userOptions == 1) {
-      System.out.println("Enter 1 to Book and 2 to Exit : ");
-      userOptions = sc.nextInt();
-      if (userOptions == 1) {
-        Booking booking = new Booking();
-        if(booking.isAvailable()) {
-          bookings.add(booking);
-          System.out.println("Your booking is confirmed");
-        }
-        else {
-          System.out.println("Sorry, seat is full. Try another bus or date.");
-        }
-      }
-    }
-
-  }
 }
