@@ -28,8 +28,10 @@ public class Booking {
     }
   }
 
-  public boolean isAvailable(ArrayList<Booking> bookings, ArrayList<Bus> buses) {
-    int capacity = 0;
+  public boolean isAvailable() {
+    BusDAO busdao = new BusDAO();
+
+    int capacity = busdao.getCapacity(busNo);
     for (Bus bus : buses) {
       if (bus.getBusNo() == busNo)
         capacity = bus.getCapacity();
