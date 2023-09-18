@@ -25,7 +25,11 @@ public class BusDAO {
 
         }
         public int getCapacity(int id) throws SQLException {
-        String query ="select "
+        String query ="select capacity from bus where id=" + id;
                 Connection con = DbConnection.getConnection();
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                rs.next();
+                return rs.getInt(1);
     }
 }
