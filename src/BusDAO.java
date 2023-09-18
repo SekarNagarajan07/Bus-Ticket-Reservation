@@ -22,7 +22,10 @@ public class BusDAO {
         }
 
         System.out.println("------------------------------------------");
-    }
 
-    
+        }
+        public int getCapacity(int id) throws SQLException {
+        String query ="select "
+                Connection con = DbConnection.getConnection();
+    }
 }
