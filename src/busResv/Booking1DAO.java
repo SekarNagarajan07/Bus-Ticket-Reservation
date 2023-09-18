@@ -17,4 +17,14 @@ public class Booking1DAO {
         rs.next();
         return rs.getInt(1);
     }
+    public void addBooking(Booking booking) throws SQLException {
+        String query = "insert into booking values(?,?,?)";
+        java.sql.Date sqldate = new java.sql.Date((booking.date.getTime()));
+        Connection con = DbConnection.getConnection();
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setString(1,booking.passengerName);
+        pst.setInt(2,booking.busNo);
+        pst.setDate(3,sqldate);
+        pst.executeUpdate();
+    }
 }
