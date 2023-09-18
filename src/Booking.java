@@ -1,4 +1,4 @@
-import busResv.BookingDAO;
+import busResv.Booking1DAO;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -30,7 +30,7 @@ public class Booking {
 
   public boolean isAvailable() throws SQLException {
     BusDAO busdao = new BusDAO();
-    BookingDAO bookingdao = new BookingDAO();
+    Booking1DAO bookingdao = new Booking1DAO();
     int capacity = busdao.getCapacity(busNo);
 
    int booked = bookingdao.getBookedCount(busNo,date);
