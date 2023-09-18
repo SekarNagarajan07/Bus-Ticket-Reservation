@@ -21,7 +21,6 @@ public class Booking {
     try {
       date = dateFormat.parse(dateInput);
     } catch (ParseException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
 
