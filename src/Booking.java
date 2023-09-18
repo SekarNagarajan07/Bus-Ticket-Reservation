@@ -1,5 +1,6 @@
 import busResv.Bus;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Booking {
     }
   }
 
-  public boolean isAvailable() {
+  public boolean isAvailable() throws SQLException {
     BusDAO busdao = new BusDAO();
 
     int capacity = busdao.getCapacity(busNo);
