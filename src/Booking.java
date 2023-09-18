@@ -1,9 +1,8 @@
-import busResv.Bus;
+import busResv.BookingDAO;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -31,20 +30,11 @@ public class Booking {
 
   public boolean isAvailable() throws SQLException {
     BusDAO busdao = new BusDAO();
-
+    BookingDAO bookingdao = new BookingDAO();
     int capacity = busdao.getCapacity(busNo);
-    for (Bus bus : buses) {
-      if (bus.getBusNo() == busNo)
-        capacity = bus.getCapacity();
-    }
 
-    int booked = 0;
-    for (Booking b : bookings) {
-      if (b.busNo == busNo && b.date.equals(date)) {
-        booked++;
-      }
-    }
-    return booked < capacity ? true : false;
+   int booked = bookingdao.getBookedCount(busNo,date);
+    return booked < capacity;
   }
 }
 
